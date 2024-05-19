@@ -1,0 +1,14 @@
+CREATE TABLE User_Info (
+    fname string,
+    lname string
+);
+
+
+INSERT INTO User_Info (fname, lname) VALUES ('Rahul', 'Seth');
+INSERT INTO User_Info (fname, lname) VALUES ('Rahul 1', 'Seth');
+INSERT INTO User_Info (fname, lname) VALUES ('Rahul 2', 'Seth');
+INSERT INTO User_Info (fname, lname) VALUES ('Rahul 3', 'Seth');
+INSERT INTO User_Info (fname, lname) VALUES ('Rahul 4', 'Seth');
+INSERT INTO User_Info (fname, lname) VALUES ('Rahul 5', 'Seth');
+INSERT INTO User_Info (fname, lname) VALUES ('Rahul 6', 'Seth');
+

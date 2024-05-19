@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: api
+        image: sethshines/nagp-node-backend:3.23
+        ports:
+        - containerPort: 3000
+        env:
+        - name: db_host
+          valueFrom:
+            secretKeyRef:
+              name: api-config
+              key: db_host
+        - name: db_user
+          valueFrom:
+            secretKeyRef:
+              name: api-config
+              key: db_user
+        - name: db_pass
+          valueFrom:
+            secretKeyRef:
+              name: api-config
+              key: db_pass
+        - name: db_name
+          valueFrom:
+            secretKeyRef:
+              name: api-config
+              key: db_name
+  # strategy:
+  #   type: RollingUpdate
+  #   rollingUpdate:
+  #     maxUnavailable: 1  # Maximum number of unavailable pods during the update
+  #     maxSurge: 1

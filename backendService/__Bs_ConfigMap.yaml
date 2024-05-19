@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: api-config
-data:
-  db_host: mysql
-  db_port: "3306"
-  db_user: cm9vdA==
-  db_pass: cm9vdA==

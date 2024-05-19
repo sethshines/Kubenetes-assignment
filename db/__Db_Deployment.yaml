@@ -1,36 +1,30 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mysql
+  name: mongo-db
 spec:
   replicas: 1
-  serviceName: mysql
+  serviceName: mongo-db
   selector:
     matchLabels:
-      app: mysql
+      app: mongo-db
   template:
     metadata:
       labels:
-        app: mysql
+        app: mongo-db
     spec:
       containers:
-      - name: mysql
-        image: mysql:latest
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: db-credentials
-              key: password
+      - name: mongo-db
+        image: sethshines/mongo-db:0.1
         ports:
-        - containerPort: 3306
-          name: mysql
+        - containerPort: 27017
+          name: mongo-db
         volumeMounts:
-        - name: mysql-persistent-storage
-          mountPath: /var/lib/mysql
+        - name: mongo-db-persistent-storage-5
+          mountPath: /var/lib/mongo-db
   volumeClaimTemplates:
   - metadata:
-      name: mysql-persistent-storage
+      name: mongo-db-persistent-storage-5
     spec:
       accessModes: ["ReadWriteOnce"]
       resources:

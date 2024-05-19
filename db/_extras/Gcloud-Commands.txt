@@ -1,0 +1,20 @@
+// Create Cluster
+gcloud beta container --project "kubernetes-423703" clusters create-auto "nagp-kubernetes" --region "asia-south2" --release-channel "regular" --network "projects/kubernetes-423703/global/networks/default" --subnetwork "projects/kubernetes-423703/regions/asia-south2/subnetworks/default" --cluster-ipv4-cidr "/17" --binauthz-evaluation-mode=DISABLED
+
+
+// Connect to cluster
+gcloud container clusters get-credentials nagp-kubernetes --region asia-south2 --project kubernetes-423703
+
+
+// Allow nodeport
+gcloud compute firewall-rules create allow-nodeport-32000 --network default --direction INGRESS --priority 1000 --action ALLOW --rules tcp:32000 --source-ranges 0.0.0.0/0 --target-tags kubernetes-423703
+
+
+
+db.createUser({
+  user: "adminrs",
+  pwd: "LDHPB",
+  roles: [{ role: "root", db: "admin" }]
+})
+
+mongodb://adminrs:LDHPB@mongo-db/user
