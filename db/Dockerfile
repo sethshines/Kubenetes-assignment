@@ -4,6 +4,9 @@ FROM mongo:latest
 # Expose the MongoDB port
 EXPOSE 27017
 
+# Copy the MongoDB initialization script
+COPY init-mongo.js /docker-entrypoint-initdb.d/
+
 # Optionally, add a volume for persistent data storage
 VOLUME /data/db
 

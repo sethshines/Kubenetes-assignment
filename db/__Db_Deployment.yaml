@@ -1,3 +1,7 @@
+# Deployment of MongoDB Container
+# Exposes 27017
+# Uses Persistent Volume
+# Single POD
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -15,13 +19,34 @@ spec:
     spec:
       containers:
       - name: mongo-db
-        image: sethshines/mongo-db:0.1
+        image: sethshines/nagp-mongo-db:1.0
         ports:
         - containerPort: 27017
           name: mongo-db
         volumeMounts:
         - name: mongo-db-persistent-storage-5
           mountPath: /var/lib/mongo-db
+        env:
+          - name: db_collection
+            valueFrom:
+              secretKeyRef:
+                name: db-config
+                key: db_collection
+          - name: db_user
+            valueFrom:
+              secretKeyRef:
+                name: db-config
+                key: db_user
+          - name: db_pass
+            valueFrom:
+              secretKeyRef:
+                name: db-config
+                key: db_pass
+          - name: db_name
+            valueFrom:
+              secretKeyRef:
+                name: db-config
+                key: db_name
   volumeClaimTemplates:
   - metadata:
       name: mongo-db-persistent-storage-5
