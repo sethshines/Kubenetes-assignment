@@ -1,10 +1,12 @@
+# Headless CLuster IP
 apiVersion: v1
 kind: Service
 metadata:
   name: mongo-db
 spec:
+  clusterIP: None
   ports:
   - port: 27017
-  clusterIP: None
+    targetPort: 27017
   selector:
     app: mongo-db

@@ -1,3 +1,4 @@
+# Dockerfile used for creating mongoDb Image.
 # Use the official MongoDB image from Docker Hub
 FROM mongo:latest
 
