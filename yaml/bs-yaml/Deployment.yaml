@@ -39,8 +39,8 @@ spec:
             secretKeyRef:
               name: api-config
               key: db_name
-  # strategy:
-  #   type: RollingUpdate
-  #   rollingUpdate:
-  #     maxUnavailable: 1  # Maximum number of unavailable pods during the update
-  #     maxSurge: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1  # Maximum number of unavailable pods during the update
+      maxSurge: 1
