@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: api
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: api
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: sethshines/nagp-node-backend:3.23
+        image: sethshines/nagp-node-backend:3.24
         ports:
         - containerPort: 3000
         env:

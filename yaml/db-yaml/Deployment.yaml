@@ -1,3 +1,7 @@
+# Deployment of MongoDB Container
+# Exposes 27017
+# Uses Persistent Volume
+# Single POD
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -43,11 +47,7 @@ spec:
         volumeMounts:
         - mountPath: /data/db
           name: mongodb-storage
-  volumeClaimTemplates:
-  - metadata:
-      name: mongodb-storage
-    spec:
-      accessModes: ["ReadWriteOnce"]
-      resources:
-        requests:
-          storage: 1Gi
+      volumes:
+      - name: mongodb-storage
+        persistentVolumeClaim:
+          claimName: mongodb-pvc
